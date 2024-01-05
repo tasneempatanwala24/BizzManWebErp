@@ -13,11 +13,26 @@ namespace BizzManWebErp
 {
     public partial class wfHrEmpKpiSelfAsseesmentEntry : System.Web.UI.Page
     {
+        //added on 12 Dec 2023
+        static clsMain objMain;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Id"] != null)
             {
                 loginuser.Value = Session["Id"].ToString();
+
+                //added on 12 Dec 2023
+                //############START###############
+                if (Session["objMain_Session"] != null)
+                {
+                    objMain = (clsMain)Session["objMain_Session"];
+                }
+                else
+                {
+                    Response.Redirect("wfAdminLogin.aspx");
+                }
+                //############END###############
 
             }
             else
@@ -29,7 +44,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchEmployeTransactionList(string EmployeeId = "")
         {
-            clsMain objMain = new clsMain();
+           // clsMain objMain = new clsMain();
             DataTable dtEmpTransList = new DataTable();
 
             try
@@ -82,7 +97,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string EmployeeMasterList(string branchid)
         {
-            clsMain objMain = new clsMain();
+           // clsMain objMain = new clsMain();
             DataTable dtDepartmentList = new DataTable();
 
             try
@@ -102,7 +117,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string KpiGoalObjectiveList(string kpisubgroupid)
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtDepartmentList = new DataTable();
 
             try
@@ -125,7 +140,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string KpiSubGroupList(string kpigroupid)
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtDepartmentList = new DataTable();
 
             try
@@ -145,7 +160,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string ManaerialAssesmentList()
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtBranchList = new DataTable();
 
             try
@@ -166,7 +181,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string KpiGroupMasterList()
         {
-            clsMain objMain = new clsMain();
+           // clsMain objMain = new clsMain();
             DataTable dtBranchList = new DataTable();
 
             try
@@ -186,7 +201,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string BranchMasterList()
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtBranchList = new DataTable();
 
             try
@@ -206,7 +221,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchEmployeeDetails(string EmpId = "")
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtEmpList = new DataTable();
 
             try
@@ -285,7 +300,7 @@ namespace BizzManWebErp
                          string Year = "", string Month = "", string SelfAssesment = "", string ManaerialAssesment = "", string Note = "", string LoginUser = "")
         {
 
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[7];
 
             objParam[0] = new SqlParameter("@EmpId", SqlDbType.NVarChar);

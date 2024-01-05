@@ -13,11 +13,26 @@ namespace BizzManWebErp
 {
     public partial class wfInventWarehouseMaster : System.Web.UI.Page
     {
+        //added on 12 Dec 2023
+        static clsMain objMain;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Id"] != null)
             {
                 loginuser.Value = Session["Id"].ToString();
+
+                //added on 12 Dec 2023
+                //############START###############
+                if (Session["objMain_Session"] != null)
+                {
+                    objMain = (clsMain)Session["objMain_Session"];
+                }
+                else
+                {
+                    Response.Redirect("wfAdminLogin.aspx");
+                }
+                //############END###############
 
             }
             else
@@ -29,7 +44,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string BindBranch()
         {
-            clsMain objMain = new clsMain();
+           // clsMain objMain = new clsMain();
             DataTable dtBranch = new DataTable();
 
             try
@@ -48,7 +63,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string BindJournal()
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtJournal = new DataTable();
 
             try
@@ -67,7 +82,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string BindLocation()
         {
-            clsMain objMain = new clsMain();
+           // clsMain objMain = new clsMain();
             DataTable dtLocation = new DataTable();
 
             try
@@ -86,7 +101,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string CheckWarehouseAvailability(string warehouse, string isUpdate)
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             bool checkId = new bool();
 
             try
@@ -114,7 +129,7 @@ namespace BizzManWebErp
         public static string AddWarehouse(string warehHouseName = "", string shortName = "", string address = "", string branch = "", string location="",  string saleJournal = "", string purchaseJournal = "", string loginUser = "")
         {
 
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[8];
 
             objParam[0] = new SqlParameter("@warehouse", SqlDbType.NVarChar);
@@ -163,7 +178,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string BindWarehouseMaster()
         {
-            clsMain objMain = new clsMain();
+           // clsMain objMain = new clsMain();
             DataTable dtwarehouseMaster = new DataTable();
 
             try
@@ -196,7 +211,7 @@ left join tblInventLocationMaster as L on w.LocationId=L.Id";
         [WebMethod]
         public static string FetchWarehouseEntry(string id="")
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtentry = new DataTable();
 
             try

@@ -8,12 +8,27 @@ namespace BizzManWebErp
 {
     public partial class wfMnfManufactureWorkCentersMaster : System.Web.UI.Page
     {
+        //added on 12 Dec 2023
+        static clsMain objMain;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Id"] != null)
             {
                 loginuser.Value = Convert.ToString(Session["Id"]);
- 
+
+                //added on 12 Dec 2023
+                //############START###############
+                if (Session["objMain_Session"] != null)
+                {
+                    objMain = (clsMain)Session["objMain_Session"];
+                }
+                else
+                {
+                    Response.Redirect("wfAdminLogin.aspx");
+                }
+                //############END###############
+
             }
             else
             {
@@ -26,7 +41,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string BranchMasterList()
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtBranchList = new DataTable();
 
             try
@@ -46,7 +61,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchMasterDetails(string Id = "")
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtMaterialList = new DataTable();
 
             try
@@ -70,7 +85,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchMasterList()
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtEmpList = new DataTable();
 
             try
@@ -102,7 +117,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string CheckDataAvailability(string strSearchName, string isUpdate)
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             bool checkId = new bool();
 
             try
@@ -160,7 +175,7 @@ namespace BizzManWebErp
         public static string AddData(int KpiGroupId, string KpiSubGroupName, string loginUser)
         {
 
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[3];
 
             objParam[0] = new SqlParameter("@KpiGroupId", SqlDbType.Int);

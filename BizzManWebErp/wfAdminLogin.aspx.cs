@@ -9,8 +9,9 @@ using System.Web.UI.WebControls;
 
 namespace BizzManWebErp
 {
+   
     public partial class wfAdminLogin : System.Web.UI.Page
-    {     
+    {
         clsMain objMain;
         protected void Page_Load(object sender, EventArgs e)
         {

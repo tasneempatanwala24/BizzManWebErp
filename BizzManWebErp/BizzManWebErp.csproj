@@ -313,7 +313,6 @@
     </Compile>
     <Compile Include="wfHrEmpKpi.aspx.cs">
       <DependentUpon>wfHrEmpKpi.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="wfHrEmpKpi.aspx.designer.cs">
       <DependentUpon>wfHrEmpKpi.aspx</DependentUpon>
@@ -327,7 +326,6 @@
     </Compile>
     <Compile Include="wfHrEmpKpiMaster.aspx.cs">
       <DependentUpon>wfHrEmpKpiMaster.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="wfHrEmpKpiMaster.aspx.designer.cs">
       <DependentUpon>wfHrEmpKpiMaster.aspx</DependentUpon>
@@ -355,7 +353,6 @@
     </Compile>
     <Compile Include="wfHrEmpLoan.aspx.cs">
       <DependentUpon>wfHrEmpLoan.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="wfHrEmpLoan.aspx.designer.cs">
       <DependentUpon>wfHrEmpLoan.aspx</DependentUpon>
@@ -376,14 +373,12 @@
     </Compile>
     <Compile Include="wfInventPutwayRule.aspx.cs">
       <DependentUpon>wfInventPutwayRule.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="wfInventPutwayRule.aspx.designer.cs">
       <DependentUpon>wfInventPutwayRule.aspx</DependentUpon>
     </Compile>
     <Compile Include="wfInventStockReportPutwayRule.aspx.cs">
       <DependentUpon>wfInventStockReportPutwayRule.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="wfInventStockReportPutwayRule.aspx.designer.cs">
       <DependentUpon>wfInventStockReportPutwayRule.aspx</DependentUpon>
@@ -537,7 +532,6 @@
     </Compile>
     <Compile Include="wfMmRequisitionNote.aspx.cs">
       <DependentUpon>wfMmRequisitionNote.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="wfMmRequisitionNote.aspx.designer.cs">
       <DependentUpon>wfMmRequisitionNote.aspx</DependentUpon>

@@ -15,6 +15,9 @@ namespace BizzManWebErp
 {
     public partial class wfPosProductCalculation : System.Web.UI.Page
     {
+        // added on 12 Dec 2023
+        static clsMain objMain;
+
         string Id;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,6 +27,19 @@ namespace BizzManWebErp
                 if (Request.QueryString["Id"] != null)
                 {
                     Id = Request.QueryString["Id"].ToString();
+
+                    //added on 12 Dec 2023
+                    //############START###############
+                    if (Session["objMain_Session"] != null)
+                    {
+                        objMain = (clsMain)Session["objMain_Session"];
+                    }
+                    else
+                    {
+                        Response.Redirect("wfAdminLogin.aspx");
+                    }
+                    //############END###############
+
                 }
             }
         }
@@ -31,7 +47,7 @@ namespace BizzManWebErp
         [WebMethod]
         public void GetImageShow()
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtimg = new DataTable();
 
             try
@@ -49,7 +65,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string List()
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtMaterialPriceList = new DataTable();
 
             try
@@ -68,7 +84,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchMaterialDetails(string Id)
         {
-            clsMain objMain = new clsMain();
+          //  clsMain objMain = new clsMain();
             DataTable dtMaterialPriceList = new DataTable();
 
             try
