@@ -9,7 +9,8 @@ using System.Data.SqlClient;
 
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using System.Configuration;
 
 namespace BizzManWebErp
 {
@@ -42,13 +43,21 @@ namespace BizzManWebErp
             try
             {
                 //BizzzManERP_New
-               
-                conHo = new System.Data.SqlClient.SqlConnection("Data Source=US12MES1-DEV\\MESDEV;Initial Catalog=MESUpcomingModules_Renew;User ID=mes_report;Password= =bhV6VVP;Persist Security Info=True");
+                // MY LAPTOP  current database
+                //Data Source=DESKTOP-S053FQR;Initial Catalog=BizzzManERP_New;Integrated Security=True
 
-            
+                //below code commented by tasneem
+
+                // conHo = new System.Data.SqlClient.SqlConnection("Data Source=DESKTOP-S053FQR;Initial Catalog=BizzzManERP_New;User ID=sa;Password=123;Persist Security Info=True");
+
+                //added by Tasneem
+               
+                conHo = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["BizzManERP"].ConnectionString.ToString());
+                //added by Tasneem
                 // *****************************************
                 conHo.Open();
                 gblConHoStatus = true;
+
             }
             catch (Exception eConHo)
             {
@@ -213,6 +222,30 @@ namespace BizzManWebErp
             return dt;
         }
 
+
+        //added by Tasneem
+        public static string GetBaseUrl()
+        {
+            string str = "";
+            if (HttpContext.Current.Request.Url.ToString().ToLower().IndexOf("https") != -1)
+            {
+                str = "https://" + HttpContext.Current.Request.ServerVariables["SERVER_NAME"];
+            }
+            else
+            {
+                str = "http://" + HttpContext.Current.Request.ServerVariables["SERVER_NAME"];
+            }
+            if ((HttpContext.Current.Request.ServerVariables["SERVER_PORT"].Length > 0) && (HttpContext.Current.Request.ServerVariables["SERVER_PORT"] != "80"))
+            {
+                str = str + ":" + HttpContext.Current.Request.ServerVariables["SERVER_PORT"];
+            }
+            if (HttpContext.Current.Request.ApplicationPath.Length > 1)
+            {
+                return (str + HttpContext.Current.Request.ApplicationPath + "/");
+            }
+            return (str + HttpContext.Current.Request.ApplicationPath);
+        }
+        //added by tasneem
 
     }
 }

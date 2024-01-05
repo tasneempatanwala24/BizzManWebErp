@@ -16,30 +16,31 @@
 
 //made by mk
 function BindKpiGroupDropdown() {
-    $.ajax({
-        type: "POST",
-        url: 'wfHrEmpKpiSubGroup.aspx/KpiGroupList',
-        data: {},
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        beforeSend: function () {
+    
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "ApplicationService.svc/" + "KpiGroupList",//'wfHrEmpKpiSubGroup.aspx/KpiGroupList',
+            data: {},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            beforeSend: function () {
 
-        },
-        success: function (response) {
-            var data = JSON.parse(response.d);
-            var abranch = "";
-            for (var i = 0; i < JSON.parse(response.d).length; i++) {
-                abranch = abranch + "<option value='" + JSON.parse(response.d)[i].Id + "'>" + JSON.parse(response.d)[i].KpiGroupName + "</option>";
+            },
+            success: function (response) {
+                var data = JSON.parse(response.d);
+                var abranch = "";
+                for (var i = 0; i < JSON.parse(response.d).length; i++) {
+                    abranch = abranch + "<option value='" + JSON.parse(response.d)[i].Id + "'>" + JSON.parse(response.d)[i].KpiGroupName + "</option>";
+                }
+                $('#ddlKpiGroup').append(abranch);
+            },
+            complete: function () {
+
+            },
+            failure: function (jqXHR, textStatus, errorThrown) {
+
             }
-            $('#ddlKpiGroup').append(abranch);
-        },
-        complete: function () {
-
-        },
-        failure: function (jqXHR, textStatus, errorThrown) {
-
-        }
-    });
+        });
 }
 
 //  made by mk

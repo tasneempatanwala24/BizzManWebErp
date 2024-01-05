@@ -8,26 +8,11 @@ namespace BizzManWebErp
 {
     public partial class wfHrBranchMasterNew : System.Web.UI.Page
     {
-        //added on 12 Dec 2023
-        static clsMain objMain;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Id"] != null)
             {
                 loginuser.Value = Convert.ToString(Session["Id"]);
-
-                //added on 12 Dec 2023
-                //############START###############
-                if (Session["objMain_Session"] != null)
-                {
-                    objMain = (clsMain)Session["objMain_Session"];
-                }
-                else
-                {
-                    Response.Redirect("wfAdminLogin.aspx");
-                }
-                //############END###############
 
             }
             else
@@ -39,7 +24,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string StateList()
         {
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtStateList = new DataTable();
 
             try
@@ -57,7 +42,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchHrMasterDetails(string branchCode, string branchName)
         {
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtCategoryList = new DataTable();
 
             try
@@ -76,7 +61,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchDetails()
         {
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtEmpList = new DataTable();
 
             try
@@ -103,7 +88,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string CheckBranchAvailability(string branchCode, string branchName, string isUpdate)
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             bool checkId = new bool();
 
             try
@@ -131,7 +116,7 @@ namespace BizzManWebErp
         public static string AddDetails(string branchCode, string branchName, string branchAddress,string contactNo,string email,string stateId, string active,string loginUser)
         {
 
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[9];
 
             objParam[0] = new SqlParameter("@BranchCode", SqlDbType.NVarChar);

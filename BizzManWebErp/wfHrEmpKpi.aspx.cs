@@ -11,11 +11,11 @@ using Newtonsoft.Json;
 
 namespace BizzManWebErp
 {
-    public partial class wfHrEmpKpiSelfAsseesmentEntry : System.Web.UI.Page
+    public partial class wfHrEmpKpi : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Id"] != null)
+            if (Session["Id"] != null) 
             {
                 loginuser.Value = Session["Id"].ToString();
 
@@ -107,7 +107,7 @@ namespace BizzManWebErp
 
             try
             {
-
+                 
                 dtDepartmentList = objMain.dtFetchData("select Id,GoalObjective from tblHrEmpKpiMaster where KpiSubGroupId ='" + kpisubgroupid + "'");
             }
             catch (Exception ex)
@@ -126,8 +126,8 @@ namespace BizzManWebErp
         public static string KpiSubGroupList(string kpigroupid)
         {
             clsMain objMain = new clsMain();
-            DataTable dtDepartmentList = new DataTable();
-
+            DataTable dtDepartmentList = new DataTable(); 
+             
             try
             {
 
@@ -153,7 +153,7 @@ namespace BizzManWebErp
 
                 dtBranchList = objMain.dtFetchData("select Id,KpiGrade FROM tblHrEmpKpiGradeMaster");
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 return "";
             }
@@ -171,7 +171,7 @@ namespace BizzManWebErp
 
             try
             {
-
+                 
                 dtBranchList = objMain.dtFetchData("select Id,KpiGroupName FROM tblHrEmpKpiGroupMaster");
             }
             catch (Exception ex)
@@ -202,6 +202,40 @@ namespace BizzManWebErp
             return JsonConvert.SerializeObject(dtBranchList);
         }
 
+
+        //  ==============mk ===========
+        [WebMethod]
+        public static string FetchUserDetails(string UserId = "")
+        {
+            clsMain objMain = new clsMain();
+            DataTable dtEmpList = new DataTable(); 
+
+            try
+            {
+                /*
+                dtEmpList = objMain.dtFetchData(@"select EmpId,EmpName,Branchcode,DOB,DOJ,PresentDesignation,PresentDepartId,Area,
+                                              FatherName,MotherName,SpouseName,Division,Grade,PresentResNo,PresentResName,
+                                              PresentRoadStreet,PresentPinNo,PresentPost,PresentState,PresentDistrict,
+                                              PermanentResNo,PermanentResName,PermanentRoadStreet,PermanentPinNo,PermanentPost,
+                                              PermanentState,PermanentDistrict,AdharNo,VoterNo,PanNo,Passport,DrivingNo,
+                                              IfscCode,BankBranchName,BankName,AcNumber,PfNo,EsiNo,Sex,MaritalStatus,
+                                              MobileNo,EmailAddress,Religion,Caste from tblHrEmpMaster where EmpId='" + EmpId + "'");
+                */
+                dtEmpList = objMain.dtFetchData(@"select a.Id, a.EmpId, b.EmpName, b.Branchcode, c.BranchName
+                                               from tblUserMaster a, tblHrEmpMaster b, tblHrBranchMaster c 
+                                               where a.EmpId = b.EmpId and b.Branchcode = c.BranchCode and a.UserName='" + UserId + "'");
+
+            }
+            catch (Exception ex)
+            {
+                // return "";
+            }
+
+            string json = JsonConvert.SerializeObject(dtEmpList, Formatting.None);
+            return json;
+        }
+
+        //=================================
 
         [WebMethod]
         public static string FetchEmployeeDetails(string EmpId = "")
@@ -281,10 +315,10 @@ namespace BizzManWebErp
         */
         //================================
         [WebMethod]
-        public static string AddEmployeeKpi(string EmpId = "", string Branch = "", string KpiGroup = "", string KpiSubGroup = "", string KpiGoalObjective = "",
-                         string Year = "", string Month = "", string SelfAssesment = "", string ManaerialAssesment = "", string Note = "", string LoginUser = "")
+        public static string AddEmployeeKpi(string EmpId = "", string Branch = "", string KpiGroup = "", string KpiSubGroup = "", string KpiGoalObjective = "", 
+                         string Year="", string Month = "", string SelfAssesment = "", string ManaerialAssesment="", string Note = "", string LoginUser = "")
         {
-
+               
             clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[7];
 

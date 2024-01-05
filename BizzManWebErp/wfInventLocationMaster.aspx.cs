@@ -14,26 +14,11 @@ namespace BizzManWebErp
 {
     public partial class wfInventLocationMaster : System.Web.UI.Page
     {
-        //added on 12 Dec 2023
-        static clsMain objMain;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Id"] != null)
             {
                 loginuser.Value = Session["Id"].ToString();
-
-                //added on 12 Dec 2023
-                //############START###############
-                if (Session["objMain_Session"] != null)
-                {
-                    objMain = (clsMain)Session["objMain_Session"];
-                }
-                else
-                {
-                    Response.Redirect("wfAdminLogin.aspx");
-                }
-                //############END###############
 
             }
             else
@@ -46,7 +31,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string BindCompany()
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtCompany = new DataTable();
 
             try
@@ -66,7 +51,7 @@ namespace BizzManWebErp
         public static string AddInventLocation(string LocationName = "", string ParentLocation = "", string LocationType = "", string BranchCode = "", bool IsScrap = false, bool IsReturn = false, string Description = "",string loginUser = "")
         {
 
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[8];
 
 
@@ -125,7 +110,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchInventLocation()
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtInventLocationList = new DataTable();
 
             try
@@ -170,7 +155,7 @@ SELECT id, LocationName, Path, LocationType, BranchName FROM main left join tblH
         [WebMethod]
         public static string FetchInventDetails(string Location = "")
         {
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtInventDetails = new DataTable();
 
             try
@@ -190,7 +175,7 @@ SELECT id, LocationName, Path, LocationType, BranchName FROM main left join tblH
         [WebMethod]
         public static string BindParentInventList(string locationId = "")
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtParentInvent = new DataTable();
 
             try
@@ -208,7 +193,7 @@ SELECT id, LocationName, Path, LocationType, BranchName FROM main left join tblH
         [WebMethod]
         public static string CheckLocationAvailability(string Location, string isUpdate)
         {
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             bool checkId = new bool();
 
             try

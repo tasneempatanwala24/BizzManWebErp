@@ -9,26 +9,12 @@ namespace BizzManWebErp
 {
     public partial class wfAdminUserMaster : System.Web.UI.Page
     {
-        //added by Tasneem Patanwala on 12 Dec 2023
-        static clsMain objMain;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Id"] != null)
             {
                 loginuser.Value = Convert.ToString(Session["Id"]);
 
-                //added by Tasneem Patanwala on 12 Dec 2023
-                //############START###############
-                if (Session["objMain_Session"] != null)
-                {
-                    objMain = (clsMain)Session["objMain_Session"];
-                }
-                else
-                {
-                    Response.Redirect("wfAdminLogin.aspx");
-                }
-                //############END###############
             }
             else
             {
@@ -39,7 +25,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string EmpIdList()
         {
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtStateList = new DataTable();
 
             try
@@ -57,7 +43,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string RoleNameList()
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtStateList = new DataTable();
 
             try
@@ -75,7 +61,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchDetails()
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtEmpList = new DataTable();
 
             try
@@ -102,7 +88,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string CheckAvailability(string UserName, string EmpId, string isUpdate)
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             bool checkId = new bool();
             Debug.WriteLine("-------value==>",EmpId);
             try
@@ -134,7 +120,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchUserMasterDetails(string UserName = "")
         {
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtCategoryList = new DataTable();
 
             try
@@ -170,7 +156,7 @@ namespace BizzManWebErp
         public static string AddDetails(string UserName, string Password, string EmpId, string RoleId, string AccessStatus, string loginUser, string PersonName, string Address, string MobileNo, string Email, string Description)
         {
 
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[12];
 
             objParam[0] = new SqlParameter("@UserName", SqlDbType.NVarChar);

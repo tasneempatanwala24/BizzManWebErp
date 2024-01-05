@@ -13,27 +13,11 @@ namespace BizzManWebErp
 {
     public partial class wfPosCustomer : System.Web.UI.Page
     {
-        //added on 12 Dec 2023
-        static clsMain objMain;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Id"] != null)
             {
                 loginuser.Value = Session["Id"].ToString();
-
-                //added on 12 Dec 2023
-                //############START###############
-                if (Session["objMain_Session"] != null)
-                {
-                    objMain = (clsMain)Session["objMain_Session"];
-                }
-                else
-                {
-                    Response.Redirect("wfAdminLogin.aspx");
-                }
-                //############END###############
-
             }
             else
             {
@@ -44,7 +28,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchCustomerList()
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtCustomerList = new DataTable();
 
             try
@@ -69,7 +53,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchCustomerDetails(string CustomerId = "")
         {
-         //   clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtCustList = new DataTable();
 
             try
@@ -88,7 +72,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string CheckCustomerNameAvailability(string CustomerName, string IsUpdate)
         {
-         //   clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             bool CheckName = new bool();
 
             try
@@ -118,7 +102,7 @@ namespace BizzManWebErp
 
         {
 
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[14];
 
             objParam[0] = new SqlParameter("@CustomerId", SqlDbType.NVarChar);

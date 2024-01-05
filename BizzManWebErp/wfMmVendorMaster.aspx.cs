@@ -14,26 +14,11 @@ namespace BizzManWebErp
 {
     public partial class wfMmVendorMaster : System.Web.UI.Page
     {
-        //added on 12 Dec 2023
-        static clsMain objMain;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Id"] != null)
             {
                 loginuser.Value = Session["Id"].ToString();
-
-                //added on 12 Dec 2023
-                //############START###############
-                if (Session["objMain_Session"] != null)
-                {
-                    objMain = (clsMain)Session["objMain_Session"];
-                }
-                else
-                {
-                    Response.Redirect("wfAdminLogin.aspx");
-                }
-                //############END###############
 
             }
             else
@@ -46,7 +31,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchVendorDetails(string VendorName = "")
         {
-         //   clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtCategoryList = new DataTable();
 
             try
@@ -80,7 +65,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string FetchVendorList()
         {
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             DataTable dtVenodrList = new DataTable();
 
             try
@@ -106,7 +91,7 @@ namespace BizzManWebErp
         [WebMethod]
         public static string CheckNameAvailability(string VendorName, string IsUpdate)
         {
-          //  clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             bool CheckName = new bool();
 
             try
@@ -135,7 +120,7 @@ namespace BizzManWebErp
         public static string AddVendor(string Category = "", string VendorName = "", string VendorAddress = "", string GST_No = "", string EmailAddress = "", string PhoneNo = "", string Description = "", string LoginUser = "")
         {
 
-           // clsMain objMain = new clsMain();
+            clsMain objMain = new clsMain();
             SqlParameter[] objParam = new SqlParameter[8];
 
 
